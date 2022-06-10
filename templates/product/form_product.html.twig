@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}mon produit{% endblock %}
+{% block header %}  {% endblock %}
+{% block body %}
+
+{{ form_start(formBien) }}
+    {{ form_widget(formBien) }}
+    <button type="submit">Envoyer</button>
+{{ form_end(formBien) }}
+{% endblock %}
