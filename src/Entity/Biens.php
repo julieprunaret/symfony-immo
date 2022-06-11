@@ -28,6 +28,9 @@ class Biens
     #[ORM\Column(type: 'datetime_immutable', nullable: true)]
     private $updatedAt;
 
+    #[ORM\ManyToOne(targetEntity: Status::class)]
+    private $status;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -89,6 +92,18 @@ class Biens
     public function setUpdatedAt(?\DateTimeImmutable $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getStatus(): ?status
+    {
+        return $this->status;
+    }
+
+    public function setStatus(?status $status): self
+    {
+        $this->status = $status;
 
         return $this;
     }

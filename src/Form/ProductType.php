@@ -3,6 +3,8 @@
 namespace App\Form;
 
 use App\Entity\Biens;
+use App\Entity\Status;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -22,7 +24,10 @@ class ProductType extends AbstractType
                 "required" => true
             ])
             ->add('description', TextareaType::class)
-        ;
+            ->add('status', EntityType::class, [
+                'class' => Status::class,
+                'choice_label' => 'name'
+            ]);
     }
 
     public function configureOptions(OptionsResolver $resolver): void
