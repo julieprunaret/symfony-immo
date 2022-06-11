@@ -34,7 +34,11 @@
 						<div class="card h-100">
 						
 							<!-- Product image-->
-							<img class="card-img-top" src="https://dummyimage.com/450x300/dee2e6/6c757d.jpg" alt="..."/>
+							{% if bien.imageName %}
+							<img class="card-img-top" src="{{ vich_uploader_asset(bien, 'imageFile') }}" alt="..."/>
+							{% else %}
+							<img class="card-img-top" src="https://via.placeholder.com/80" alt="Card image cap">
+							{% endif %}
 							<div class="badge bg-{{ bien.status.colors.codeBootstrap|default('dark') }} text-white position-absolute" style="top: 0.5rem; right: 1rem">{{ bien.status.name|default('N.C') }}</div>
 							<!-- Product details-->
 							<div class="card-body p-4">

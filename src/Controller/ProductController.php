@@ -45,7 +45,7 @@ class ProductController extends AbstractController
             $entityManager->flush(); //on envoit de nouvelles données
             // Etape 3.3 : Affichage d'un message succès
             $this->addFlash(
-                'add_sucess',
+                'success_add',
                 'Votre bien' . $bien->getTitle() . 'a bien été ajouté !'
             );
             // Etape 3.4 : redirection
