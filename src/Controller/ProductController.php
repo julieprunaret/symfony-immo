@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Biens;
 use DateTimeImmutable;
+use App\Form\ProductType;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,13 +18,13 @@ class ProductController extends AbstractController
     {
         $bien = $doctrine->getRepository(Biens::class)->find($id);
         return $this->render('product/details_product.html.twig', [
-            "bien" => $bien
+            'bien' => $bien
         ]);
     }
 
     //create
-    #[Route('/bien/nouveau-bien', name: 'add_product')]
-    public function add(Request $request, ManagerRegistry $doctrine): Response
+    #[Route('/ajouter/bien', name: 'add_product')]
+    public function add(Request $request, ManagerRegistry $doctrine)
     {
         $bien = new Biens();
         $bien->setCreatedAt(new DateTimeImmutable());
@@ -40,7 +41,7 @@ class ProductController extends AbstractController
 
             $this->addFlash(
                 'add_sucess',
-                'Votre bien a bien été ajouté !'
+                'Votre bien' . $bien->getTitle(). 'a bien été ajouté !'
             );
 
             return $this->redirectToRoute('app_home');
@@ -48,7 +49,7 @@ class ProductController extends AbstractController
 
 
         return $this->render('product/form_product.html.twig', [
-            "formBien" => $formBien->createView()
+            'formBien' => $formBien->createView()
         ]);
     }
 
