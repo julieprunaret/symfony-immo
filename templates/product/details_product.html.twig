@@ -18,15 +18,14 @@
 						<a class="btn btn-outline-dark flex-shrink-0" href="">
 							Retour
 						</a>
-						<a class="btn btn-outline-dark flex-shrink-0" href="">
+						<a class="btn btn-outline-dark flex-shrink-0" href="{{ path('update_product', {id: bien.id}) }}">
 							<i class="bi-pen me-1"></i>
 							Modifier
 						</a>
-						<a class="btn btn-outline-danger flex-shrink-0" href="" >
-							<i class="bi-trash me-1"></i>
+						<a class="btn btn-outline-danger flex-shrink-0" href="{{ path('delete_product', {id: bien.id}) }}" >
+							<i class="bi-trash me-1" onclick="confirm('Voulez vous vraiment suprimer ce bien?') || event.preventDefault()"></i>
 							Supprimer
 						</a>
-
 					</div>
 				</div>
 			</div>
