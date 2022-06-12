@@ -18,8 +18,10 @@ class ProductController extends AbstractController
     public function read($id, ManagerRegistry $doctrine): Response
     {
         $bien = $doctrine->getRepository(Biens::class)->find($id);
+        $biens = $doctrine->getRepository(Biens::class)->findBy([], ['id' => 'DESC'], 4);
         return $this->render('product/details_product.html.twig', [
-            'bien' => $bien
+            'bien' => $bien,
+            'biens' => $biens
         ]);
     }
 

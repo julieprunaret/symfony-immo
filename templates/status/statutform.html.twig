@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ formTitle }}{% endblock %}
+{% block header %}{% endblock %}
+{% block body %}
+ {# le design est géré dans twig.yalm avec bootstrap #}
+<section class="py-5">
+	<div class="container">
+    <h1>{{ formTitle }}</h1>
+    {{ form_start(formStatut) }}
+        {{ form_widget(formStatut) }}
+        <button type="submit" class="btn btn-primary">{{ formSubmitLabel }}</button>
+    {{ form_end(formStatut) }}
+    </div>
+</section>
+{% endblock %}
