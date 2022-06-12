@@ -5,6 +5,7 @@
 {% block body %}
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
+
 	{# message add flash à l'ajout d'un bien #}
 		{% for message in app.flashes('success_add') %}
 			<div class="alert alert-success alert-dismissible fade show" role="alert">
