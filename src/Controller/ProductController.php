@@ -65,15 +65,18 @@ class ProductController extends AbstractController
     #[Route('/modifier/{id}', name: 'update_product')]
     public function update($id, Request $request, ManagerRegistry $doctrine)
     {
-        // Etape 01 : on va récupérer l'objet concerné avec son id
+        // on va récupérer l'objet concerné avec son id
         $bien = $doctrine->getRepository(Biens::class)->find($id);
         // On initialise nos champs dates avec la date d'aujourd'hui
         $bien->setUpdatedAt(new DateTimeImmutable());
 
+        // Etape 01 : Crée une instance de la classe Form à partir de la classe Products
         $formBien = $this->createForm(ProductType::class, $bien);
+        // Etape 02 : Permet de gérer le traitement de la saisie du formulaire.
         $formBien->handleRequest($request);
-
+        // Etape 03 : test si le formulaire a été saisi et si les règles de validations sont vérifiées
         if ($formBien->isSubmitted() && $formBien->isValid()) {
+            // Etape 3.1 : On demande à doctrine de surveiller / gérer l'objet en cours
             $entityManager = $doctrine->getManager();
             $entityManager->flush();
             $this->addFlash(
