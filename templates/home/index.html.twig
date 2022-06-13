@@ -5,42 +5,26 @@
 {% block body %}
 	<section class="py-5">
 		<div class="container px-4 px-lg-5 mt-5">
-
-	{# message add flash à l'ajout d'un bien #}
-		{% for message in app.flashes('success_add') %}
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
-	{# message add flash à la modification #}
-		{% for message in app.flashes('success_edit') %}
-			<div class="alert alert-warning alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
-	{# message add flash à la supression #}
-		{% for message in app.flashes('success_delete') %}
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
-		<a href="{{ path('add_product') }}" class="mb-3 btn btn-warning">Ajouter un bien</a>
+			{% if app.user %} 
+			<a href="{{ path('add_product') }}" class="mb-3 btn btn-warning">Ajouter un bien</a>
+			{% endif %} 
 			{# {{ dump(biens) }} #}
+			{% include('includes/_message-flash.html.twig') %}
 			<div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
 				{% for bien in biens %}
 					<div class="col mb-5">
-						<div class="card h-100">
-						
+						<div
+							class="card h-100">
+
 							<!-- Product image-->
 							{% if bien.imageName %}
-							<img class="card-img-top" src="{{ vich_uploader_asset(bien, 'imageFile') }}" alt="..."/>
+								<img class="card-img-top" src="{{ vich_uploader_asset(bien, 'imageFile') }}" alt="..."/>
 							{% else %}
-							<img class="card-img-top" src="https://via.placeholder.com/80" alt="Card image cap">
+								<img class="card-img-top" src="https://via.placeholder.com/80" alt="Card image cap">
 							{% endif %}
-							<div class="badge bg-{{ bien.status.colors.codeBootstrap|default('dark') }} text-white position-absolute" style="top: 0.5rem; right: 1rem">{{ bien.status.name|default('N.C') }}</div>
+							<div
+								class="badge bg-{{ bien.status.colors.codeBootstrap|default('dark') }} text-white position-absolute"
+								style="top: 0.5rem; right: 1rem">{{ bien.status.name|default('N.C') }}</div>
 							<!-- Product details-->
 							<div class="card-body p-4">
 								<div
@@ -48,7 +32,7 @@
 									<!-- Product name-->
 									<h5 class="fw-bolder">{{ bien.title }}</h5>
 									<!-- Product price-->
-									{{ bien.price|number_format(0, ',', ' ') }}
+									{{ bien.price|number_format(0, ',', ' ') }} €
 									<p>créé le {{ bien.createdAt|date("d/m/Y à H:i:s") }}</p>
 								</div>
 							</div>

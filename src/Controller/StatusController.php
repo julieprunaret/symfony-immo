@@ -13,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class StatusController extends AbstractController
 {
-    #[Route('/status', name: 'app_status')]
+    #[Route('/admin/status', name: 'app_status')]
     public function read(ManagerRegistry $doctrine): Response
     {
         $status = $doctrine->getRepository(Status::class)->findBy([], ['id' => 'DESC']);
@@ -25,7 +25,7 @@ class StatusController extends AbstractController
 
 
     //create
-    #[Route('/ajouter/statut', name: 'app_statut_add')]
+    #[Route('/admin/ajouter/statut', name: 'app_statut_add')]
     public function add(Request $request, ManagerRegistry $doctrine): Response
     {
         $statut = new Status();
@@ -51,7 +51,7 @@ class StatusController extends AbstractController
     }
 
     //update
-    #[Route('/modifier/statut/{id}', name: 'app_statut_edit')]
+    #[Route('/admin/modifier/statut/{id}', name: 'app_statut_edit')]
     public function edit($id, Request $request, ManagerRegistry $doctrine): Response
     {
         $statut = $doctrine->getRepository(Status::class)->find($id);
@@ -76,7 +76,7 @@ class StatusController extends AbstractController
     }
 
     //Delete
-    #[Route('/suprimer/statut/{id}', name: 'app_statut_delete')]
+    #[Route('/admin/suprimer/statut/{id}', name: 'app_statut_delete')]
     public function delete($id, ManagerRegistry $doctrine): RedirectResponse
     {
         $statut = $doctrine->getRepository(Status::class)->find($id);

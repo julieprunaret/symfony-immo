@@ -5,30 +5,11 @@
 {% block body %}
 <section class="py-5">
     <div class="container">
-    	{# message add flash à l'ajout d'un bien #}
-		{% for message in app.flashes('app_statut_add') %}
-			<div class="alert alert-success alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
-	{# message add flash à la modification
-		{% for message in app.flashes('app_statut_edit') %}
-			<div class="alert alert-warning alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %}
-	{# message add flash à la supression 
-		{% for message in app.flashes('app_statut_delete') %}
-			<div class="alert alert-danger alert-dismissible fade show" role="alert">
-				{{ message }}
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-		{% endfor %} #}
+		{% include('includes/_message-flash.html.twig') %}
+
         <a  href="{{ path('app_statut_add') }}" class="mr-1 btn btn-warning">
             <i class="bi-add me-1"></i>
-                Ajouter un statut
+                Ajouter un Bien
         </a>
         <table class="table">
             <thead>

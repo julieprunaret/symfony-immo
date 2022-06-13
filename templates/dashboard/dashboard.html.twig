@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block body %}
+	<div class="container">
+    <h1>DASHBOARD</h1>
+	<h2>Bienvenue {{ app.user.name|upper }}</h2>
+
+
+	<section class="py-5">
+    <div class="container">
+		{% include('includes/_message-flash.html.twig') %}
+
+        <a  href="{{ path('add_product') }}" class="mr-1 btn btn-warning">
+            <i class="bi-add me-1"></i>
+                Ajouter un Bien
+        </a>
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Bien</th>
+                <th scope="col">Apperçu</th>
+                <th scope="col">Prix</th>
+				<th scope="col">Gestion</th>
+                </tr>
+            </thead>
+            <tbody>
+            
+            {% for bien in biens %}
+                <tr>
+                    <th scope="row">{{ bien.id }}</th>
+                    <td>{{ bien.title }}</td>
+                    <td>
+						{% if bien.imageName %}
+							<img class="card-img-dashboard" src="{{ vich_uploader_asset(bien, 'imageFile') }}" alt="..."/>
+						{% else %}
+							<img class="card-img-dashboard" src="https://via.placeholder.com/50" alt="Card image cap">
+						{% endif %}
+                    </td>
+					<td>{{ bien.price|number_format(0, ',', ' ') }} €</td>
+                    <td>
+                        <a href="{{ path('app_product', {id : bien.id }) }}" class="btn btn-outline-dark mr-1">
+                            <i class="bi-eye me-1"></i>
+                            Voir le bien
+                        </a>
+                        <a href="{{ path('update_product', {id : bien.id }) }}" class="btn btn-outline-primary mr-1">
+                            <i class="bi-pen me-1"></i>
+                            Modifier
+                        </a>
+                        <a href="{{ path('delete_product', {id : bien.id }) }}" class="mr-1 btn btn-outline-danger" onclick="confirm('Voulez vous vraiment suprimer ce bien?') || event.preventDefault()">
+                            <i class="bi-trash me-1"></i>
+                            Supprimer
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+	</div>
+{% endblock %}

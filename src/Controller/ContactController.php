@@ -50,7 +50,9 @@ class ContactController extends AbstractController
         return $this->render('contact/contactform.html.twig', [
             'formContact' => $formContact->createView(),
             'formTitle' => 'Nous contacter',
-            'formSubmitLabel' => 'Envoyer le message'
+            'formSubmitLabel' => 'Envoyer le message',
+            // 'flashName' => 'success_message_contact',
+            // 'flashColor' => 'warning'
         ]);
     }
 }

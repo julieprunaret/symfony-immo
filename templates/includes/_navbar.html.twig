@@ -20,6 +20,7 @@
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="{{ path('app_contact_form') }}">Nous contacter</a>
 				</li>
+				{% if is_granted('ROLE_ADMIN') %}
 				<li class="nav-item dropdown">
 					<a
 						class="nav-link dropdown-toggle"
@@ -30,7 +31,11 @@
 						aria-expanded="false">Admin</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<li>
+							<a class="dropdown-item" href="{{ path('app_dashboard')}}">Gestion des biens</a>
+						</li>
+						<li>
 							<a class="dropdown-item" href="{{ path('add_product')}}">Ajouter un bien</a>
+						</li>
 						</li>
 						<li><hr class="dropdown-divider"/></li>
 						<li>
@@ -41,13 +46,24 @@
 						</li>
 					</ul>
 				</li>
+				{% endif %}
 			</ul>
 			<form class="d-flex">
-				<button class="btn btn-outline-dark" type="submit">
-					<i class="bi-cart-fill me-1"></i>
-					Cart
-					<span class="badge bg-dark text-white ms-1 rounded-pill">0</span>
-				</button>
+			{% if app.user %} 
+			<a class="btn btn-outline-dark" href="{{ path('app_logout') }}">
+					<i class="bi-login-fill me-1"></i>
+					Se déconnecter
+			</a>
+			{% else %} 
+			<a class="btn btn-light " href="{{ path('app_login') }}">
+					<i class="bi-logout-fill me-1"></i>
+					Se connecter
+			</a>
+			<a class="btn btn-outline-dark" href="{{ path('app_register') }}">
+					<i class="bi-logout-fill me-1"></i>
+					S'inscrire
+			</a>
+			{% endif %}
 			</form>
 		</div>
 	</div>

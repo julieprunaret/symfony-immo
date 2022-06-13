@@ -26,7 +26,7 @@ class ProductController extends AbstractController
     }
 
     //create
-    #[Route('/ajouter/bien', name: 'add_product')]
+    #[Route('/admin/ajouter/bien', name: 'add_product')]
     public function add(Request $request, ManagerRegistry $doctrine)
     {
         // On instancie notre objet produit
@@ -51,6 +51,7 @@ class ProductController extends AbstractController
                 'Votre bien' . $bien->getTitle() . 'a bien été ajouté !'
             );
             // Etape 3.4 : redirection
+
             return $this->redirectToRoute('app_home');
         }
 
@@ -60,11 +61,12 @@ class ProductController extends AbstractController
             'formBien' => $formBien->createView(),
             'formTitle' => 'Ajouter un bien',
             'formSubmitLabel'=> 'Ajouter',
+            
         ]);
     }
 
     //Update
-    #[Route('/modifier/{id}', name: 'update_product')]
+    #[Route('/admin/modifier/{id}', name: 'update_product')]
     public function update($id, Request $request, ManagerRegistry $doctrine)
     {
         // on va récupérer l'objet concerné avec son id
@@ -92,12 +94,12 @@ class ProductController extends AbstractController
         return $this->render('product/form_product.html.twig', [
             'formBien' => $formBien->createView(),
             'formTitle' => 'Modifier un bien',
-            'formSubmitLabel'=> 'Modifier',
+            'formSubmitLabel'=> 'Modifier'
         ]);
     }
 
     //Delete
-    #[Route('/suprimer/{id}', name: 'delete_product')]
+    #[Route('/admin/suprimer/{id}', name: 'delete_product')]
     public function delete($id, ManagerRegistry $doctrine) : RedirectResponse
     {
         // Etape 01 : on va récupérer l'objet concerné avec son id

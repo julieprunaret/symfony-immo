@@ -23,9 +23,10 @@
 					</div>
 					<p class="lead">description</p>
 					<div class="d-flex">
-						<a class="mr-1 btn btn-outline-dark flex-shrink-0" href="">
+						<a class="mr-1 btn btn-outline-dark flex-shrink-0" href="{{ path('app_home') }}">
 							Retour
 						</a>
+						{% if app.user %} 
 						<a class="mr-1 btn btn-outline-dark flex-shrink-0" href="{{ path('update_product', {id: bien.id}) }}">
 							<i class="bi-pen me-1"></i>
 							Modifier
@@ -34,6 +35,7 @@
 							<i class="bi-trash me-1" ></i>
 							Supprimer
 						</a>
+						{% endif %}
 					</div>
 				</div>
 			</div>

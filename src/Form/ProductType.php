@@ -31,12 +31,12 @@ class ProductType extends AbstractType
             ])
             ->add('imageFile', VichImageType::class, [
                 'required' => false,
-                'allow_delete' => true,
-                'delete_label' => '...',
-                'download_label' => '...',
-                'download_uri' => true,
-                'image_uri' => true,
-                'asset_helper' => true,
+                //'allow_delete' => true,
+                //'delete_label' => '...',
+                //'download_label' => 'Télécharger l'image',
+                //'download_uri' => true,
+                //'image_uri' => true,
+                //'asset_helper' => true,
             ]);
     }
 
